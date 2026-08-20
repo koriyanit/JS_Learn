@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Users</title>
+	<style>
+		* { box-sizing: border-box; }
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			background: #f4f6f8;
+			color: #1f2937;
+		}
+		header {
+			padding: 2rem 1rem;
+			text-align: center;
+			background: #2563eb;
+			color: white;
+		}
+		header h1 { margin: 0 0 .5rem; }
+		header p { margin: 0; opacity: .9; }
+		main { width: min(1100px, 92%); margin: 2rem auto; }
+		#refresh-button {
+			display: block;
+			width: min(320px, 92%);
+			margin: 0 auto 2rem;
+			padding: 1rem 1.5rem;
+			border: 0;
+			border-radius: 8px;
+			background: #2563eb;
+			color: white;
+			font: inherit;
+			font-size: 1.15rem;
+			font-weight: bold;
+			cursor: pointer;
+		}
+		#refresh-button:hover { background: #1d4ed8; }
+		#refresh-button:focus-visible {
+			outline: 3px solid #93c5fd;
+			outline-offset: 3px;
+		}
+		#users-container {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+			gap: 1.25rem;
+		}
+		.user-card {
+			padding: 1.25rem;
+			background: white;
+			border-radius: 10px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+		}
+		.user-card img {
+			display: block;
+			width: 88px;
+			height: 88px;
+			margin: 0 auto 1rem;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 3px solid #dbeafe;
+		}
+		.user-card h2 { margin: 0 0 .75rem; font-size: 1.2rem; }
+		.user-card p { margin: .5rem 0; color: #4b5563; }
+		.user-card strong { color: #1f2937; }
+		.message { padding: 2rem; text-align: center; color: #6b7280; }
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Our Users</h1>
+		<p>Browse user information</p>
+	</header>
+
+	<main>
+        <button id="refresh-button" type="button">Refresh Users</button>
+		<section id="users-container" aria-label="User list">
+			
+		</section>
+	</main>
+    <script src="script.js"></script>
+</body>
+</html>
+
