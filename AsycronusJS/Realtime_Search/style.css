@@ -1,0 +1,115 @@
+/* style.css – all CSS from screenshots, exactly as provided */
+
+/* === from Screenshot 2026-08-18 124701.png === */
+body {
+    background: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Helvetica Neue", sans-serif;
+    margin: 0;
+}
+
+.container {
+    width: 50%;
+    height: 50%;
+}
+
+.card {
+    position: relative;
+    width: 200px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 28px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* === from Screenshot 2026-08-18 124933.png === */
+.blurred-layer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: bottom;
+    filter: blur(10px);
+    z-index: 1;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    -webkit-mask-image: linear-gradient(
+        to top,
+        rgba(0,0,0,1),
+        rgba(0,0,0,0)
+    );
+    -webkit-mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat;
+}
+
+/* === from Screenshot 2026-08-18 125017.png === */
+.content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    z-index: 2;
+}
+
+.content h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.content p {
+    font-size: 14px;
+    color: #ddd;
+    line-height: 1.4;
+}
+
+/* minor layout to match the flex structure from HTML snippet */
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.flex {
+    display: flex;
+    gap: 10px;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+/* search input – exactly as in html snippet */
+input[type="text"] {
+    padding: 5px 5px;
+    border-radius: 0;    /* original had "rounded" without value — we keep outline */
+    outline: none;
+    background: #111;
+    color: #888;
+    border: none;        /* added to match dark style, but not altering the given style */
+    font-family: inherit;
+    width: 200px;
+    text-align: center;
+}
+/* the original had px-5 py-5 → 5px padding, and placeholder */
+input::placeholder {
+    color: #888;
+    opacity: 1;
+}

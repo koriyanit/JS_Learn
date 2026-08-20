@@ -1,0 +1,61 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Download Page</title>
+
+    <link rel="stylesheet" href="download.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="icon">
+            ↓
+        </div>
+
+        <h2>Download File</h2>
+
+        <p class="description">
+            Click the button below to download your file.
+        </p>
+
+        <div class="file-info">
+
+            <span class="file-name">
+                my-file.pdf
+            </span>
+
+            <span class="file-size">
+                2.5 MB
+            </span>
+
+        </div>
+
+        <div class="progress-container">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+
+        <span id="progressText">
+            0%
+        </span>
+
+        <input type="submit" id="downloadBtn">
+            Downloading....
+        </input>
+
+        <p id="status"></p>
+
+    </div>
+
+    <script src="download.js"></script>
+
+</body>
+
+</html>
+```
