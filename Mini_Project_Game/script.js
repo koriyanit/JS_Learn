@@ -1,27 +1,109 @@
 const board = document.querySelector('.board');
 //console.log(board);
+const modal = document.querySelector(".modal");
+const startButton = document.querySelector(".btn-start");
+const restartButton = document.querySelector(".btn-restart");
+const startGameModal = document.querySelector(".start-game");
+const gameOverModal = document.querySelector(".game-over");
+
+const highScoreElement = document.querySelector("#high-score");
+const scoreElement = document.querySelector("#score");
+const timeElement = document.querySelector("#time");
+
 
 const blockHeight = 30;
 const blockWidth = 30;
+
+let highScore = localStorage.getItem("highScore") || 0;
+let score = 0;
+let time = '00:00';
+let diraction = 'down';
+
+highScoreElement.innerText = highScore;
 
 const cols = Math.floor(board.clientWidth / blockWidth);
 const rows = Math.floor(board.clientHeight / blockHeight);
 
 let intervalId = null;
-
+let timerIntervalId = null;
 
 const blocks = [];
-const snake = [ {x: 1, y: 3}];
-const food = [{
+ let snake = [ {x: 1, y: 3}];
+ let food = [{
                 x: Math.floor(Math.random() * rows),
                 y: Math.floor(Math.random() * cols)
             }];
 
 
-let diraction = 'down';
+startButton.addEventListener("click", ()=> {
+    modal.style.display = "none"
+
+    // highScore = localStorage.getItem(highScore);
+    // highScoreElement.innerText = highScore;
+
+    intervalId = setInterval(() => { renderSnake() }, 500)
+    timerIntervalId = setInterval(() => { 
+        let [minutes, seconds] = time.split(":").map(Number);
+        
+        if(seconds == 59) {
+            minutes += 1;
+            seconds = 0;
+        } else {
+            seconds += 1
+        }
+        time = `${minutes}:${seconds}`
+        timeElement.innerText = time;
+    }, 1000);
+})
+
+restartButton.addEventListener("click", restartGame);
+
+function restartGame () {
+
+    score = 0;
+    time = `00:00`;
+
+    scoreElement.innerText = score;
+    timeElement.innerText = time;
+    highScoreElement.innerText = highScore; 
+
+    diraction = "down";
+    blocks[`${food[0].x},${food[0].y}`].classList.remove("food");
+
+    snake.forEach(segment => {
+        blocks[`${segment.x},${segment.y}`].classList.remove("fill");
+    })
+
+    modal.style.display = "none";
+
+    snake = [ {x: 1, y: 3}];
+
+    food = [{
+                    x: Math.floor(Math.random() * rows),
+                    y: Math.floor(Math.random() * cols)
+                }];
+
+    intervalId = setInterval(() => {
+        renderSnake()
+    }, 500)
+
+    timerIntervalId = setInterval(() => { 
+        let [minutes, seconds] = time.split(":").map(Number);
+        
+        if(seconds == 59) {
+            minutes += 1;
+            seconds = 0;
+        } else {
+            seconds += 1
+        }
+        time = `${minutes}:${seconds}`
+        timeElement.innerText = time;
+    }, 1000);
+    
+}
 
 addEventListener("keydown", (event)=> {
-    console.log(event.key);
+    // console.log(event.key);
 
     if(event.key == "ArrowUp") {
         diraction = "up";
@@ -40,7 +122,7 @@ for(let row = 0; row < rows; row++) {
         const block = document.createElement('div');
         block.classList.add('block');
         board.appendChild(block);       
-        block.innerText = `${row},${col}`;
+        //block.innerText = `${row},${col}`;
         blocks[`${row},${col}`] = block;
         
     }
@@ -65,9 +147,11 @@ function renderSnake() {
     }
 
     if(head.x < 0 || head.x >= rows || head.y < 0 || head.y >= cols) {
-        alert("Game Over");
         clearInterval(intervalId); 
-        
+
+        modal.style.display = "flex";
+        startGameModal.style.display = "none";
+        gameOverModal.style.display = "flex";
         return;
     }
 
@@ -76,13 +160,22 @@ function renderSnake() {
 
         blocks[`${food[0].x},${food[0].y}`].classList.remove("food");
 
-        snake.push(head);
+        snake.unshift(head);
         // Snake ate the food
 
         food[0] = {
             x: Math.floor(Math.random() * rows),
             y: Math.floor(Math.random() * cols)
         };
+
+        score += 10;
+        scoreElement.innerText = score;
+
+        if(score > highScore) {
+            highScore = score;
+            localStorage.setItem("highScore", highScore);
+            highScoreElement.innerText = highScore;
+        }
     }
 
     snake.forEach(segment => {
@@ -97,6 +190,4 @@ function renderSnake() {
     });
 }
 
-intervalId =setInterval(() => {
-    renderSnake();
-}, 500);
+
