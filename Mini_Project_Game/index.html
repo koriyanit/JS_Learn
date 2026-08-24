@@ -3,41 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini-Project</title>
+    <title>Neon Serpent | Mini Project</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main>
         <section>
+            <header class="game-header">
+                <div>
+                    <p class="eyebrow">ARCADE // 001</p>
+                    <h1>Neon <span>Serpent</span></h1>
+                </div>
+                <div class="status"><i></i> Ready to play</div>
+            </header>
             <div class="infos">
                 <div class="info">
-                    <h3>High Score: 
+                    <p class="info-label">Best run</p>
+                    <h3>
                         <span id="high-score">0</span>
                     </h3>
                 </div>
                 <div class="info">
-                    <h3>Score: 
+                    <p class="info-label">Current score</p>
+                    <h3>
                         <span id="score">0</span>
                     </h3>
                 </div>
                 <div class="info">
-                    <h3>time: 
+                    <p class="info-label">Time alive</p>
+                    <h3>
                         <span id="time">00:00</span>
                     </h3>
                 </div>
             </div>
             <div class="board">
-
             </div>
+            <p class="controls"><span>ARROW KEYS</span> to steer <b>·</b> <span>COLLECT</span> the sparks</p>
         </section>
         <div class="modal">
             <div class="start-game">
-                <h3>Welcome to the  Snake Game</h3>
-                <button class="btn btn-start">Start Game</button>
+                <p class="modal-kicker">SYSTEM ONLINE</p>
+                <h2>Wake the serpent.</h2>
+                <p class="modal-copy">Grow longer. Stay sharp.<br>Own the grid.</p>
+                <button class="btn btn-start"><span>Start Game</span><b>↗</b></button>
             </div>
             <div class="game-over">
-                <h3>Game Over</h3>
-                <button class="btn btn-restart">Restart Game</button>
+                <p class="modal-kicker">RUN TERMINATED</p>
+                <h2>Out of orbit.</h2>
+                <p class="modal-copy">The grid got the better of you.<br>Make the next run count.</p>
+                <button class="btn btn-restart"><span>Try Again</span><b>↗</b></button>
             </div>
         </div>
     </main>
